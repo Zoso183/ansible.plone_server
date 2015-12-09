@@ -35,6 +35,10 @@ buildout-user = plone_buildout
 eggs =
     Plone
     Pillow
+# Uncomment the Raven egg to enable the raven setry for logging.
+# In addition, uncomment the error-log-custom pieces from the
+# [client_base] section below
+#    Raven
 {% if plone_additional_eggs %}
 {% for egg in plone_additional_eggs %}
     {{ egg }}
@@ -128,6 +132,16 @@ shared-blob = on
 http-fast-listen = off
 
 event-log = ${buildout:var-dir}/${:_buildout_section_name_}/event.log
+#event-log-custom =
+#    %import raven.contrib.zope
+#    <logfile>
+#      path ${buildout:var-dir}/${:_buildout_section_name_}/event.log
+#      level INFO
+#    </logfile>
+#    <sentry>
+#      dsn http://ffa1dbda4858459a99a80065947bc666:8989999123e54cf0acdd8dca79899872@sentry.bikalabs.com/2
+#      level ERROR
+#    </sentry>
 z2-log    = ${buildout:var-dir}/${:_buildout_section_name_}/Z2.log
 pid-file  = ${buildout:var-dir}/${:_buildout_section_name_}/${:_buildout_section_name_}.pid
 lock-file = ${buildout:var-dir}/${:_buildout_section_name_}/${:_buildout_section_name_}.lock
