@@ -159,7 +159,8 @@ http-address = 127.0.0.1:{{ "%s" % (plone_client_base_port|int + loop.index) }}
 [client_reserved]
 <= client_base
 recipe = plone.recipe.zope2instance
-http-address = 127.0.0.1:{{ "%s" % (plone_client_base_port|int + plone_client_count) }}
+#This makes client_reserved available from any remote machine, rather than localhost only
+http-address = 0.0.0.0:{{ "%s" % (plone_client_base_port|int + plone_client_count) }}
 
 
 [backup]
